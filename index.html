@@ -1,6 +1,7 @@
 <html>
 	<head>
-		<title>DDR A Score Calculator</title>
+		<link rel="stylesheet" href="styles.css">
+		<title>DDR A Score Calculator (Beta)</title>
 	</head>
 	<script
   src="https://code.jquery.com/jquery-3.3.1.min.js"
@@ -44,36 +45,51 @@
 			}
 		</script>
 		<div id="title">
-			<h1 style="text-align: center;">DDR A Score Calculator</h1>
-			<h2 style="text-align: center;">By Gab Santiago</h2>
+			<h1>DDR A Score Calculator (Beta)</h1>
+			<h2>By Gab Santiago</h2>
 		</div>
 
-		<div id="input" style="text-align: center;">
-			Marvelous:
-			<input type="number" id="marvCount" min="0"><br>
-			Perfect:
-			<input type="number" id="perfCount" min="0"><br>
-			Great:
-			<input type="number" id="greatCount" min="0"><br>
-			Good:
-			<input type="number" id="goodCount" min="0"><br>
-			OK:
-			<input type="number" id="okCount" min="0"><br>
-			Miss:
-			<input type="number" id="missCount" min="0"><br>
+		<div id="input">
+			<table align="center">
+				<tr>
+					<td>Marvelous:</td>
+					<td><input type="number" id="marvCount" min="0"></td>
+				</tr>
+				<tr>
+					<td>Perfect:</td>
+					<td><input type="number" id="perfCount" min="0"></td>
+				</tr>
+				<tr>
+					<td>Great:</td>
+					<td><input type="number" id="greatCount" min="0"></td>
+				</tr>
+				<tr>
+					<td>Good:</td>
+					<td><input type="number" id="goodCount" min="0"></td>
+				</tr>
+				<tr>
+					<td>OK:</td>
+					<td><input type="number" id="okCount" min="0"></td>
+				</tr>
+				<tr>
+					<td>Miss:</td>
+					<td><input type="number" id="missCount" min="0"></td>
+				</tr>
+			</table>
 			<input type="button" id="compute" onclick="computeScore()" value="Compute">
+
 		</div>
 		
-		<div id="results" style="text-align: center;">
+		<div id="results">
 			<h2>Number of steps:</h2>
 			<p id="numSteps">0</p>
 			<h2>Your regular score:</h2>
 			<p id="regScore">0000000</p>
-			<h2 style="text-align: center;">Your EX score:</h2>
+			<h2>Your EX score:</h2>
 			<p id="exScore">0000</p>
 		</div>
 
-		<div id="contact" style="text-align: center;">
+		<div id="contact">
 			<p>Formulas borrowed from:</p>
 			<p><a href="http://aaronin.jp/ss9.html">DDR SN2-X3 scoring</a></p>
 			<p><a href="https://remywiki.com/AC_DDR_A">DDR A scoring</a></p>

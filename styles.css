@@ -1,0 +1,33 @@
+body {
+	font-family: montserrat;
+}
+
+td {
+	text-align: right;
+	padding: 3px 0;
+}
+
+table {
+	border-collapse: separate;
+	border-spacing: 45px 0;
+}
+
+#title, #input, #results, #contact {
+	text-align: center;
+}
+
+#input {
+	
+}
+
+#results {
+	
+}
+
+#contact {
+	
+}
+
+#marvCount, #perfCount, #greatCount, #goodCount, #okCount, #missCount {
+	width: 90px;
+}
