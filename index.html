@@ -1,0 +1,86 @@
+<html>
+	<head>
+		<title>DDR A Score Calculator</title>
+	</head>
+	<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+	<body style="font-family: montserrat">
+		<script type="text/javascript">
+			function computeScore() {
+				// get judgement data
+				var marv = Number($("#marvCount").val());
+				var perf = Number($("#perfCount").val());
+				var great = Number($("#greatCount").val());
+				var good = Number($("#goodCount").val());
+				var ok = Number($("#okCount").val());
+				var miss = Number($("#missCount").val());
+
+				// calculate the song's max combo
+				var numSteps = marv + perf + great + good + miss;
+
+				
+				/* calculate the regular score
+				 * formula derived from:
+				 * http://aaronin.jp/ss9.html (DDR SN2-X3 scoring)
+				 * https://remywiki.com/AC_DDR_A (DDR A scoring)
+				 */
+				var marvScore = 1000000 / (numSteps + ok);
+				var perfScore = marvScore - 10;
+				var greatScore = (marvScore * 0.6) - 10;
+				var goodScore = (marvScore * 0.2) - 10;
+
+				var regScore = Math.floor(((marvScore * (marv + ok)) + (perfScore * perf) + (greatScore * great) + (goodScore * good) + 0.1) / 10) * 10 ;
+				
+				// calculate the EX score
+				// formula: 3pts - marv and ok, 2pts - perf, 1pt - great, 0pts - everything else
+				var exScore = (marv * 3) + (perf * 2) + (great * 1) + (ok * 3);
+
+				// display results
+				$("#numSteps").html(numSteps);
+				$("#regScore").html(regScore);
+				$("#exScore").html(exScore);
+			}
+		</script>
+		<div id="title">
+			<h1 style="text-align: center;">DDR A Score Calculator</h1>
+			<h2 style="text-align: center;">By Gab Santiago</h2>
+		</div>
+
+		<div id="input" style="text-align: center;">
+			Marvelous:
+			<input type="number" id="marvCount" min="0"><br>
+			Perfect:
+			<input type="number" id="perfCount" min="0"><br>
+			Great:
+			<input type="number" id="greatCount" min="0"><br>
+			Good:
+			<input type="number" id="goodCount" min="0"><br>
+			OK:
+			<input type="number" id="okCount" min="0"><br>
+			Miss:
+			<input type="number" id="missCount" min="0"><br>
+			<input type="button" id="compute" onclick="computeScore()" value="Compute">
+		</div>
+		
+		<div id="results" style="text-align: center;">
+			<h2>Number of steps:</h2>
+			<p id="numSteps">0</p>
+			<h2>Your regular score:</h2>
+			<p id="regScore">0000000</p>
+			<h2 style="text-align: center;">Your EX score:</h2>
+			<p id="exScore">0000</p>
+		</div>
+
+		<div id="contact" style="text-align: center;">
+			<p>Formulas borrowed from:</p>
+			<p><a href="http://aaronin.jp/ss9.html">DDR SN2-X3 scoring</a></p>
+			<p><a href="https://remywiki.com/AC_DDR_A">DDR A scoring</a></p>
+			<p>Made by Gab Santiago</p>
+			<p><a href="https://github.com/gab-santi">GitHub</a></p>
+			<p><a href="https://www.facebook.com/gbsssss">Facebook</a></p>
+			<p><a href="https://drive.google.com/drive/folders/14xAhG14erqVkcNtibXjcq9BdJG9VGjwU?usp=sharing">View test cases</a></p>
+		</div>
+	</body>
+</html>
