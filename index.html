@@ -1,102 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
 <html>
 	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="styles.css">
-		<title>DDR A Score Calculator (Beta)</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+
+		<!-- jQuery library -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+		<!-- Popper JS -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+
+		<!-- Latest compiled JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+		<!-- JavaScript functions -->
+		<script src="scripts.js"></script>
+		<title>DDR A Score Calculator</title>
 	</head>
-	<script
-  src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+	
 	<body style="font-family: montserrat">
-		<script type="text/javascript">
-			function computeScore() {
-				// get judgement data
-				var marv = Number($("#marvCount").val());
-				var perf = Number($("#perfCount").val());
-				var great = Number($("#greatCount").val());
-				var good = Number($("#goodCount").val());
-				var ok = Number($("#okCount").val());
-				var miss = Number($("#missCount").val());
-
-				// calculate the song's max combo
-				var numSteps = marv + perf + great + good + miss;
-
+		<div class="container">
+				<div class="row" id="title">
+					<div class="col">
+							<h1>DDR A Score Calculator</h1>
+					</div>
+				</div>
 				
-				/* calculate the regular score
-				 * formula derived from:
-				 * http://aaronin.jp/ss9.html (DDR SN2-X3 scoring)
-				 * https://remywiki.com/AC_DDR_A (DDR A scoring)
-				 */
-				var marvScore = 1000000 / (numSteps + ok);
-				var perfScore = marvScore - 10;
-				var greatScore = (marvScore * 0.6) - 10;
-				var goodScore = (marvScore * 0.2) - 10;
+				<div class="row" id="input">
 
-				var regScore = Math.floor(((marvScore * (marv + ok)) + (perfScore * perf) + (greatScore * great) + (goodScore * good) + 0.1) / 10) * 10 ;
+					<div class="col-sm-6">
+						<table class="table table-dark" align="center">
+							<tr>
+								<td class="judge text-white">Song Title (Optional)</td>
+								<td><input type="text" class="form-control"></td>
+							</tr>
+							<tr>
+								<td class="judge text-white">MARVELOUS</td>
+								<td><input type="number" class="form-control" id="marvCount" min="0" value="0"></td>
+							</tr>
+							<tr>
+								<td class="judge text-warning">PERFECT</td>
+								<td><input type="number" class="form-control" id="perfCount" min="0" value="0"></td>
+							</tr>
+							<tr>
+								<td class="judge text-success">GREAT</td>
+								<td><input type="number" class="form-control" id="greatCount" min="0" value="0"></td>
+							</tr>
+							<tr>
+								<td class="judge text-primary">GOOD</td>
+								<td><input type="number" class="form-control" id="goodCount" min="0" value="0"></td>
+							</tr>
+							<tr>
+								<td class="judge">OK</td>
+								<td><input type="number" class="form-control" id="okCount" min="0" value="0"></td>
+							</tr>
+							<tr>
+								<td class="judge text-secondary">MISS</td>
+								<td><input type="number" class="form-control" id="missCount" min="0" value="0"></td>
+							</tr>
+						</table>
+
+						<div class="row">
+							<div class="col">
+									<button type="button" class="btn btn-dark" id="compute" onclick="computeScore()">COMPUTE</button>
+									<button type="button" class="btn btn-dark" id="reset" onclick="resetInput()">RESET</button>
+							</div>		
+						</div>
+						
+
+					</div>
+
+					<div class="col-sm-6" id="results">
+						<h1 class="display-3" id="letterGrade">--</h1>
+						<h3 id="fcType"></h3>
+						<h1 id="regScore">0000000</h1>
+						<br>
+						<h3>Your EX score:</h3>
+						<h3 id="exScore"><small>0000</small></h3>
+						<br>
+						<h3>Number of steps:</h3>
+						<h3 id="numSteps"><small>0</small></h3>
+					</div>
+				</div>
 				
-				// calculate the EX score
-				// formula: 3pts - marv and ok, 2pts - perf, 1pt - great, 0pts - everything else
-				var exScore = (marv * 3) + (perf * 2) + (great * 1) + (ok * 3);
-
-				// display results
-				$("#numSteps").html(numSteps);
-				$("#regScore").html(regScore);
-				$("#exScore").html(exScore);
-			}
-		</script>
-		<div id="title">
-			<h1>DDR A Score Calculator (Beta)</h1>
-			<h2>By Gab Santiago</h2>
-		</div>
-
-		<div id="input">
-			<table align="center">
-				<tr>
-					<td>Marvelous:</td>
-					<td><input type="number" id="marvCount" min="0"></td>
-				</tr>
-				<tr>
-					<td>Perfect:</td>
-					<td><input type="number" id="perfCount" min="0"></td>
-				</tr>
-				<tr>
-					<td>Great:</td>
-					<td><input type="number" id="greatCount" min="0"></td>
-				</tr>
-				<tr>
-					<td>Good:</td>
-					<td><input type="number" id="goodCount" min="0"></td>
-				</tr>
-				<tr>
-					<td>OK:</td>
-					<td><input type="number" id="okCount" min="0"></td>
-				</tr>
-				<tr>
-					<td>Miss:</td>
-					<td><input type="number" id="missCount" min="0"></td>
-				</tr>
-			</table>
-			<input type="button" id="compute" onclick="computeScore()" value="Compute">
-
+				<div class="row" id="formulas">
+					<div class="col">
+						Formulas borrowed from:
+						<a class="text-dark" href="http://aaronin.jp/ss9.html">DDR SN2-X3</a>
+						<a class="text-dark" href="https://remywiki.com/AC_DDR_A">DDR A</a>
+					</div>	
+				</div>
 		</div>
 		
-		<div id="results">
-			<h2>Number of steps:</h2>
-			<p id="numSteps">0</p>
-			<h2>Your regular score:</h2>
-			<p id="regScore">0000000</p>
-			<h2>Your EX score:</h2>
-			<p id="exScore">0000</p>
-		</div>
+		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
+					<span class="sr-only">Contact</span>
+			</button>
+			<div class="collapse navbar-collapse">
+				<ul class="navbar-nav mr-auto">
+		           	<li class="nav-item active">
+		                <span class="nav-link">Gab Santiago</span>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" href="https://www.facebook.com/gbsssss">Facebook</a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" href="https://github.com/gab-santi">GitHub</a>
+		            </li>
 
-		<div id="contact">
-			<p>Formulas borrowed from:</p>
-			<p><a href="http://aaronin.jp/ss9.html">DDR SN2-X3 scoring</a></p>
-			<p><a href="https://remywiki.com/AC_DDR_A">DDR A scoring</a></p>
-			<p>Made by Gab Santiago</p>
-			<p><a href="https://github.com/gab-santi">GitHub</a></p>
-			<p><a href="https://www.facebook.com/gbsssss">Facebook</a></p>
-			<p><a href="https://drive.google.com/drive/folders/14xAhG14erqVkcNtibXjcq9BdJG9VGjwU?usp=sharing">View test cases</a></p>
-		</div>
+		            <li class="nav-item active">
+		                <span class="nav-link">Micah Abigail Gonzales</span>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" href="https://www.facebook.com/mchgnzlsx">Facebook</a>
+		            </li>
+		            <li class="nav-item">
+		                <a class="nav-link" href="https://twitter.com/tsukiihime_?s=09">Twitter</a>
+		            </li>
+		        </ul>	
+			</div>
+		</nav>
 	</body>
 </html>
