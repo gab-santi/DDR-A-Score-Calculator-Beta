@@ -5,7 +5,7 @@ body {
   	padding-bottom: 50px;
   	background-size: auto;
   	background-color: #5499C7 !important;
-  	color: #FFFFFF !important;  
+  	color: #FFFFFF !important;
 }
 
 .navbar {
@@ -24,7 +24,7 @@ body {
 	padding-top: 20px;
 }
 
-#title, #results, #formulas {
+#title, #results, #formulas, #computeDiv {
 	text-align: center;
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 #input {
-	
+
 }
 
 #results {
@@ -41,16 +41,12 @@ body {
 }
 
 #contact {
-	
+
 }
 
 #marvCount, #perfCount, #greatCount, #goodCount, #okCount, #missCount {
 	width: 90px;
 	text-align: left;
-}
-
-#computeDiv {
-	text-align: center;
 }
 
 #compute, #reset {

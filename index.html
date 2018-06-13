@@ -21,7 +21,7 @@
 		<script src="scripts.js"></script>
 		<title>DDR A Score Calculator</title>
 	</head>
-	
+
 	<body style="font-family: montserrat">
 		<div class="container">
 				<div class="row" id="title">
@@ -29,7 +29,7 @@
 							<h1>DDR A Score Calculator</h1>
 					</div>
 				</div>
-				
+
 				<div class="row" id="input">
 
 					<div class="col-sm-6">
@@ -64,13 +64,13 @@
 							</tr>
 						</table>
 
-						<div class="row">
+						<div class="row" id="computeDiv">
 							<div class="col">
 									<button type="button" class="btn btn-dark" id="compute" onclick="computeScore()">COMPUTE</button>
 									<button type="button" class="btn btn-dark" id="reset" onclick="resetInput()">RESET</button>
-							</div>		
+							</div>
 						</div>
-						
+
 
 					</div>
 
@@ -86,19 +86,19 @@
 						<h3 id="numSteps"><small>0</small></h3>
 					</div>
 				</div>
-				
+
 				<div class="row" id="formulas">
 					<div class="col">
 						Formulas borrowed from:
 						<a class="text-dark" href="http://aaronin.jp/ss9.html">DDR SN2-X3</a>
 						<a class="text-dark" href="https://remywiki.com/AC_DDR_A">DDR A</a>
-					</div>	
+					</div>
 				</div>
 		</div>
-		
+
 		<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-bottom">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">		
-					<span class="sr-only">Contact</span>
+			<button data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="oi oi-comment-square"></span>
 			</button>
 			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav mr-auto">
@@ -121,7 +121,7 @@
 		            <li class="nav-item">
 		                <a class="nav-link" href="https://twitter.com/tsukiihime_?s=09">Twitter</a>
 		            </li>
-		        </ul>	
+		        </ul>
 			</div>
 		</nav>
 	</body>

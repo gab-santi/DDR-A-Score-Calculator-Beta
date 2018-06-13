@@ -21,7 +21,7 @@
 				var goodScore = (marvScore * 0.2) - 10;
 
 				var regScore = Math.floor(((marvScore * (marv + ok)) + (perfScore * perf) + (greatScore * great) + (goodScore * good) + 0.1) / 10) * 10 ;
-				
+
 				// calculate the EX score
 				// formula: 3pts - marv and ok, 2pts - perf, 1pt - great, 0pts - everything else
 				var exScore = (marv * 3) + (perf * 2) + (great * 1) + (ok * 3);
@@ -35,7 +35,7 @@
 				} else if (regScore >= 900000 && regScore <= 949990) { // AA
 					letterGrade = "AA";
 				} else if (regScore >= 890000 && regScore <= 899990) { // AA-
-					letterGrade = "AA-";	
+					letterGrade = "AA-";
 				} else if (regScore >= 850000 && regScore <= 889990) { // A+
 					letterGrade = "A+";
 				} else if (regScore >= 800000 && regScore <= 849990) { // A
@@ -46,7 +46,7 @@
 					letterGrade = "B+";
 				} else if (regScore >= 700000 && regScore <= 749990) { // B
 					letterGrade = "B";
-				} else if (regScore >= 690000 && regScore <= 699990) { // B- 
+				} else if (regScore >= 690000 && regScore <= 699990) { // B-
 					letterGrade = "B-";
 				} else if (regScore >= 650000 && regScore <= 689990) { // C+
 					letterGrade = "C+";
@@ -67,7 +67,7 @@
 				if (miss == 0) {
 					if (good == 0) {
 						if (great == 0) {
-							if (perf == 0) { 
+							if (perf == 0) {
 								fcType = "Marvelous Full Combo";
 							} else {
 								fcType = "Perfect Full Combo";
@@ -94,5 +94,10 @@
 				$("#greatCount").val(0);
 				$("#goodCount").val(0);
 				$("#okCount").val(0);
-				$("#missCount").val(0)
+				$("#missCount").val(0);
+				$("#letterGrade").html("--");
+				$("#fcType").html("");
+				$("#regScore").html("0000000");
+				$("#exScore").html("0000");
+				$("#numSteps").html("0");
 			}
