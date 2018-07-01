@@ -68,7 +68,13 @@
 					if (good == 0) {
 						if (great == 0) {
 							if (perf == 0) {
-								fcType = "Marvelous Full Combo";
+									if (marv == 0) {
+										$("#letterGrade").html("--");
+										$("#fcType").html("");
+										$("#regScore").html("0000000");
+									} else {
+										fcType = "Marvelous Full Combo";
+									}
 							} else {
 								fcType = "Perfect Full Combo";
 							}
