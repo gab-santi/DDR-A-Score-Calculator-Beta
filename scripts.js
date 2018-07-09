@@ -1,4 +1,7 @@
 			function computeScore() {
+				var regScore = "0000000";
+				var exScore = "0000";
+
 				// get judgement data
 				var marv = Number($("#marvCount").val());
 				var perf = Number($("#perfCount").val());
@@ -20,14 +23,18 @@
 				var greatScore = (marvScore * 0.6) - 10;
 				var goodScore = (marvScore * 0.2) - 10;
 
-				var regScore = Math.floor(((marvScore * (marv + ok)) + (perfScore * perf) + (greatScore * great) + (goodScore * good) + 0.1) / 10) * 10 ;
+
+
+				if (numSteps != 0)
+					regScore = Math.floor(((marvScore * (marv + ok)) + (perfScore * perf) + (greatScore * great) + (goodScore * good) + 0.1) / 10) * 10 ;
 
 				// calculate the EX score
 				// formula: 3pts - marv and ok, 2pts - perf, 1pt - great, 0pts - everything else
-				var exScore = (marv * 3) + (perf * 2) + (great * 1) + (ok * 3);
+				if (numSteps != 0)
+					exScore = (marv * 3) + (perf * 2) + (great * 1) + (ok * 3);
 
 				// find letter grade
-				var letterGrade = "";
+				var letterGrade = "--";
 				if (regScore >= 990000) { // AAA
 					letterGrade = "AAA";
 				} else if (regScore >= 950000 && regScore <= 989990) { // AA+
@@ -56,7 +63,7 @@
 					letterGrade = "C-";
 				} else if (regScore >= 550000 && regScore <= 589990) { // D+
 					letterGrade = "D+";
-				} else if (regScore >= 0 && regScore <= 549990) { // D
+				} else if (regScore >= 0 && regScore <= 549990 && numSteps != 0) { // D
 					letterGrade = "D";
 				}
 
@@ -69,9 +76,7 @@
 						if (great == 0) {
 							if (perf == 0) {
 									if (marv == 0) {
-										$("#letterGrade").html("--");
-										$("#fcType").html("");
-										$("#regScore").html("0000000");
+										resetInput();
 									} else {
 										fcType = "Marvelous Full Combo";
 									}
